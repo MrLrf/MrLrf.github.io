@@ -133,7 +133,7 @@ description: JavaScript中的正则表达式的使用。
 
 反向引用，当我们替换或者其他操作需要前面引用替换的字符串时，可以使用"$"符号依次得到匹配的分组的字符串。例如，将"2017-02-08"替换为"02/08/2017"，需要替换的字符串不可能是一成不变的，所以需要使用反向引用，方法为：
 `'2017-02-08'.replace(/(\d{4})-(\d{2})-(\d{2})/g, '$2/$3$1')`;
-![](http://i.imgur.com/wFYOjSJ.png)
+![](http://i1.piimg.com/567571/41c1186668cad5f4.png)
 
 关于分组常有的用法如下：
 
@@ -141,7 +141,7 @@ description: JavaScript中的正则表达式的使用。
 | :-------- | :--------|
 | (exp)		| 匹配exp,并捕获文本到自动命名的组里 |
 | (?<\name>exp)| 匹配exp,并捕获文本到名称为name的组里 |
-| (?:exp)	| 匹配exp,不捕获匹配的文本，也不给此分组分配组号<br>![](http://i.imgur.com/Y3LOn7G.png)|
+| (?:exp)	| 匹配exp,不捕获匹配的文本，也不给此分组分配组号<br>![](http://i1.piimg.com/567571/cb7f7aca0008884b.png)|
 
 ## 3.2 前瞻
 >正则表达式从文本头部向尾部开始解析，文本尾部方向成为前。
@@ -151,8 +151,8 @@ description: JavaScript中的正则表达式的使用。
 
 | 名称       | 正则      |  含义    |
 | :-------- | :-------- | :------ |
-| 正向前瞻	| exp(?=assert) | 前面正则表达式匹配并且后面符合断言<br>![](http://i.imgur.com/ngfStMj.png)| 
-| 负向前瞻	| exp(?!assert) | 前面正则表达式匹配并且后面不符合断言<br>![](http://i.imgur.com/H4UT8i3.png)|
+| 正向前瞻	| exp(?=assert) | 前面正则表达式匹配并且后面符合断言<br>![](http://i1.piimg.com/567571/778c12d8755dc987.png)| 
+| 负向前瞻	| exp(?!assert) | 前面正则表达式匹配并且后面不符合断言<br>![](http://i2.muimg.com/567571/787844d42aae11bd.png)|
 | 正向后顾	| exp(?<=assert)| JavaScript不支持 |
 | 负向后顾	| exp(?<!assert)| JavaScript不支持 |
 

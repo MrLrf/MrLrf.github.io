@@ -8,7 +8,7 @@ tags:
 description: WPF中使用DevExpress ChartControl控件绘制Pie饼状图。
 ---
 饼状图要比XYDiagram要简单一点，大体上也是那些东西，没有了X、Y坐标轴，也就没有了第二坐标，要简单一点。
-![WPF饼状图](http://i.imgur.com/S866F4R.png)
+![WPF饼状图](http://i4.buimg.com/567571/cdf282babe7f9ea8.png)
 PieChartControl.xaml
 ```
 <UserControl x:Class="WpfControl.PieChartControl"

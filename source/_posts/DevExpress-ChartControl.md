@@ -10,8 +10,10 @@ description: WinForm中使用DevExpress ChartControl控件绘制图表基础，�
 最近因为公司项目需要用到WinForm的DecExpress控件，在这里把一些使用方法总结一下。
 DevExpress中有一个专门用来绘制图表的插件ChartControl，可以绘制折线图、饼状图、柱状图等图表。
 
-# 1. 绘制图表基本步骤
-![](http://i.imgur.com/XUvjCav.png)
+# 绘制图表基本步骤
+<div align=center>
+![](http://i2.muimg.com/567571/2149a9d185e05463.png)
+</div>
 1. 准备数据并绑定
 	这里从数据库中取得数据，可以根据自己的需要修改。
 ```
@@ -132,8 +134,10 @@ CreateChart(chartControl1, list);
 ```
 	小结：在绘制折线图的时候我遇到的一个很大的问题就是没办法控制数据的显示数量，因为数据库中存储的数据量过大，在一定时间段内的数据都能达到上千条，所以不可能一次性全部显示。我想到的解决办法是固定显示多少条数据，比如说20条，然后根据数据量每隔一段距离取一条数据显示。
 
-# 2. 柱状图
-![](http://i.imgur.com/GkiPOIi.png)
+# 柱状图
+<div align=center>
+![](http://i1.piimg.com/567571/b144e515659bd454.png)
+</div>
 绘制柱状图其实和绘制折线图没有什么区别，就是将new Series时的图形类型改为ViewType.Bar即可，这里我想总结一下一个困扰我很久的问题，如何绘制上图所示的一个横坐标对应两个或者多个柱子。
 1. 准备数据
 ```
@@ -212,8 +216,10 @@ private void CreateChart(ChartControl chartControl, List<Series> series)
 }
 ```
 
-# 3. 饼状图
-![](http://i.imgur.com/iLr40tv.png)
+# 饼状图
+<div align=center>
+![](http://i1.piimg.com/567571/9e32250685b304fd.png)
+</div>
 1. 准备数据
 ```
 private DataTable CreateChartData()

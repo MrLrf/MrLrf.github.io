@@ -8,7 +8,7 @@ tags:
 description: WPF中使用DevExpress ChartControl控件绘制XYDiagrem折线图。
 ---
 WPF使用Dev和WinForm有许多不同，相对而言，WPF要更简单和炫酷一点，我只做了一点基本的功能，没有仔细的研究，这里只介绍一下WPF Dev ChartControl绘制XYDiagram的基础。
-![XYDiagram折线图](http://i.imgur.com/IN8KMhf.png)
+![XYDiagram折线图](http://i1.piimg.com/567571/506953353caf6f08.png)
 
 XYDiagramControl.xaml页面
 ```

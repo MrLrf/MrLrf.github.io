@@ -7,7 +7,9 @@ description: Git常用命令使用总结。
 ---
 ## Local
 # 一、初始化
-![](http://i.imgur.com/z2LqJym.png)
+<div align=center>
+![](http://i4.buimg.com/567571/dd3793b2b627c019.png)
+</div>
 ### （一）全局变量
 1. `git config --global user.name "MrLrf"` 设置用户名
 2. `git config --global user.email "liruifeng0718@163.com"` 设置邮箱
@@ -29,7 +31,9 @@ description: Git常用命令使用总结。
 1. `git commit -u "提交信息"` 提交代码
 
 # 二、常用操作
-![](http://i.imgur.com/RKjzUHs.png)
+<div align=center>
+![](http://i1.piimg.com/567571/37ff9cdf2af2de5c.png)
+</div>
 ### （一）提交
 1. `git commit -m "some msg" -a` 提交所有修改
 2. `git commit -m "some msg to readme.txt" readme.txt` 提交单个文件
@@ -73,7 +77,9 @@ description: Git常用命令使用总结。
 
 ## Remote
 # 一、初始化
-![](http://i.imgur.com/Zqchsu2.png)
+<div align=center>
+![](http://i4.buimg.com/567571/32f38e331a5edf03.png)
+</div>
 ### （一）克隆版本库
 1. `git clone <url>` 克隆url对应的版本库
 
@@ -85,7 +91,9 @@ description: Git常用命令使用总结。
 1. `git init -bare` 当需要一个公用的中央库时，非常适合把它建成bare库
 
 # 二、常用操作
-![](http://i.imgur.com/3UxRwXO.png)
+<div align=center>
+![](http://i2.muimg.com/567571/5ea022645ca04cac.png)
+</div>
 ### （一）分支
 1. `git branch -r` 列出远程分支
 2. `git remote prune origin` 删除远程库中已经不存在的分支
@@ -98,7 +106,9 @@ description: Git常用命令使用总结。
 1. `git push (origin master)`
 
 # 三、http://github.com
-![](http://i.imgur.com/Q8UThby.png)
+<div align=center>
+![](http://i1.piimg.com/567571/45e3577b951601b5.png)
+</div>
 GitHub上连接已有仓库时的认证，是通过使用了 SSH 的公开密钥
 认证方式进行的。创建SSH Key：`ssh-keygen -t rsa -C "你的github邮箱"`。然后输入`cat ~/.ssh/id_rsa.pub`然后就复制到粘贴板。
 
