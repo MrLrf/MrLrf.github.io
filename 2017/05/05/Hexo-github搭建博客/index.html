@@ -1,0 +1,985 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="rSaSVFHn00y-RXQfkSjRQkW-EkFZyAriGhaaNTq0JTA" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hexo," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.png?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在经历了无数次的折腾之后,终于完成了心目中的hexo个人博客,虽然有很多东西待完善(比如主题,Travis CI自动部署),但是还是要简单的总结一下的.">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo+github搭建个人博客并实现多终端管理">
+<meta property="og:url" content="https://mrlrf.github.io/2017/05/05/Hexo-github搭建博客/index.html">
+<meta property="og:site_name" content="Lee&#39;s Blog">
+<meta property="og:description" content="在经历了无数次的折腾之后,终于完成了心目中的hexo个人博客,虽然有很多东西待完善(比如主题,Travis CI自动部署),但是还是要简单的总结一下的.">
+<meta property="og:image" content="http://opf32dlts.bkt.clouddn.com/17-5-5/86678797-file_1493993054937_a74a.jpg">
+<meta property="og:image" content="http://opf32dlts.bkt.clouddn.com/17-5-11/7938235-file_1494470636033_1460d.png">
+<meta property="og:image" content="http://opf32dlts.bkt.clouddn.com/17-5-11/26134374-file_1494474966697_129e1.jpg">
+<meta property="og:image" content="http://opf32dlts.bkt.clouddn.com/17-5-11/68196472-file_1494475636357_48a2.gif">
+<meta property="og:image" content="http://opf32dlts.bkt.clouddn.com/17-5-11/59189359-file_1494481082580_a630.jpg">
+<meta property="og:updated_time" content="2018-08-17T15:39:46.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo+github搭建个人博客并实现多终端管理">
+<meta name="twitter:description" content="在经历了无数次的折腾之后,终于完成了心目中的hexo个人博客,虽然有很多东西待完善(比如主题,Travis CI自动部署),但是还是要简单的总结一下的.">
+<meta name="twitter:image" content="http://opf32dlts.bkt.clouddn.com/17-5-5/86678797-file_1493993054937_a74a.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mrlrf.github.io/2017/05/05/Hexo-github搭建博客/"/>
+
+
+
+
+
+  <title>Hexo+github搭建个人博客并实现多终端管理 | Lee's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lee's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://mrlrf.github.io/2017/05/05/Hexo-github搭建博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tristan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hexo+github搭建个人博客并实现多终端管理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-05T17:30:23+08:00">
+                2017-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/05/Hexo-github搭建博客/" class="leancloud_visitors" data-flag-title="Hexo+github搭建个人博客并实现多终端管理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  在经历了无数次的折腾之后,终于完成了心目中的hexo个人博客,虽然有很多东西待完善(比如主题,Travis CI自动部署),但是还是要简单的总结一下的.
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
+<p>前段时间在博客园写自己的第一篇博客被舍友看到,舍友说推荐一个个人博客搭建的方法叫hexo,从此我就踏上了这条不归路,至今已有几个月,终于大体完成了自己想要的功能,在这里记录一下.当然,未来还有很长的路要走…<br>使用hexo搭建个人博客大概可以分以下几个步骤:</p>
+<ol>
+<li>环境的搭建(基于Windows)</li>
+<li>安装Hexo并配置本地博客</li>
+<li>将本地博客同步到GitHub上</li>
+<li>管理个人博客</li>
+<li>管理博客主题(主题NexT的简单配置)</li>
+<li>多终端同时管理博客</li>
+</ol>
+<h2 id="环境的搭建-基于Windows"><a href="#环境的搭建-基于Windows" class="headerlink" title="环境的搭建(基于Windows)"></a>环境的搭建(基于Windows)</h2><hr>
+<ol>
+<li>下载并安装Node.js(<a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi" target="_blank" rel="external">Windows Installer 64-bit</a>)<br><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="external">点击打开安装教程</a></li>
+<li>下载并安装Git(<a href="https://github-cloud.s3.amazonaws.com/releases/23216272/84b33b96-87f5-11e5-8f91-32080286239e.exe?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAISTNZFOVBIJMK3TQ%2F20161210%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20161210T033734Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=912c155bbe0fe970ca7b948f5f0d5e8c68c712b7fb8006062f53c8638c62c7b6&amp;X-Amz-SignedHeaders=host&amp;actor_id=14971673&amp;response-content-disposition=attachment%3B%20filename%3DGit-2.6.3-64-bit.exe&amp;response-content-type=application%2Foctet-stream" target="_blank" rel="external">Git-2.6.3-64-bit.exe</a>)<br><a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="external">点击打开安装教程</a></li>
+<li>注册GitHub账号</li>
+</ol>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><hr>
+<p>全局安装,在git bash下输入:<code>npm install hexo-cli -g</code>,执行完成之后输入:<code>npm install hexo --save</code>.安装完成之后输入<code>hexo -v</code>,出现版本信息则表明安装成功.<br>新建一个文件夹(随便什么地方),例如D:\hexo,在文件夹下打开git bash执行命令 <code>hexo init</code> 然后执行 <code>npm install</code>,之后npm将会自动安装你需要的组件，只需要等待npm操作完成即可。<br>继续在git bash中操作,执行命令 <code>hexo g</code>,完成之后执行 <code>hexo s</code>,控制台会提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INFO  Start processing</div><div class="line">INFO  Hexo is running at http://localhost:4000/ . Press Ctrl+C to stop.</div></pre></td></tr></table></figure></p>
+<p>在浏览器中打开<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> ，你将会看到：<br><img src="http://opf32dlts.bkt.clouddn.com/17-5-5/86678797-file_1493993054937_a74a.jpg" alt=""></p>
+<p>至此,本地博客已搭建成功.</p>
+<blockquote>
+<p>注意: 若执行<code>hexo s</code>命令后在浏览器打开<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 没有反应,可能的原因是端口号被占用,可以执行<code>hexo s -p 端口号(5000)</code>,然后再浏览器打开<a href="http://localhost:5000/" target="_blank" rel="external">http://localhost:5000/</a> 即可</p>
+</blockquote>
+<h2 id="将本地博客同步到GitHub上"><a href="#将本地博客同步到GitHub上" class="headerlink" title="将本地博客同步到GitHub上"></a>将本地博客同步到GitHub上</h2><hr>
+<ol>
+<li>配置GitHub 首先要在本地生成ssh秘钥上传到注册的GitHub账户上,这里不再赘述,然后创建一个Repository,仓库名必须为[你的用户名.github.io].</li>
+<li><p>编辑_config.yml文件 用文本编辑器打开_config.yml文件,翻到最下面,改成下面的样子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: https://github.com/MrLrf/MrLrf.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装必要插件 进入本地hexo目录,在git bash下执行命令<code>npm install hexo-deployer-git --save</code>.</p>
+</li>
+<li>重新部署 在git bash中依次执行<code>hexo clean</code>（清除旧的public生成文件）,<code>hexo generate</code>（或者<code>hexo g</code>生成静态文件）,<code>hexo server</code>（本地预览）,<code>hexo deploy</code>（部署到github上，第一次会有弹框提示，输入yes，点击ok）. 然后在浏览器中输入<a href="https://mrlrf.github.io/">https://mrlrf.github.io/</a> 就可以访问了.</li>
+</ol>
+<p>至此,个人博客搭建成功!</p>
+<blockquote>
+<p>部署步骤 每次部署可以分为以下几步来进行<br><code>hexo clean</code>（清除旧的public生成文件）<br><code>hexo generate</code>（可以简写<code>hexo g</code>,生成静态文件）<br><code>hexo server</code>（可以简写<code>hexo s</code>,本地预览）<br><code>hexo deploy</code>（可以简写<code>hexo d</code>,部署到github上)</p>
+</blockquote>
+<h2 id="管理个人博客"><a href="#管理个人博客" class="headerlink" title="管理个人博客"></a>管理个人博客</h2><hr>
+<ol>
+<li>写一篇文章<br>输入命令<code>hexo new &quot;hello&quot;</code>生成一个.md文件,路径为hexo目录/source/_posts/<br><img src="http://opf32dlts.bkt.clouddn.com/17-5-11/7938235-file_1494470636033_1460d.png" alt=""><br>用Markdown编辑器(Windows系统推荐MarkdownPad2)打开hello.md文件,然后编辑,完成后保存.然后重新部署之后就可以在博客中看到新写的博客了.</li>
+<li>配置信息<br>使用文本编辑器打开博客根目录下的_config.yml文件进行编辑.<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"># Hexo Configuration</div><div class="line">## Docs: https://hexo.io/docs/configuration.html</div><div class="line">## Source: https://github.com/hexojs/hexo/</div><div class="line"></div><div class="line"># Site</div><div class="line"># 博客名称</div><div class="line">title: MyBlog</div><div class="line"># 副标题</div><div class="line">subtitle: </div><div class="line"># 简介</div><div class="line">description: 在追寻真理的路上，我们要勇于犯错，只有犯错，我们才会离真理更进一步。</div><div class="line"># 博客作者</div><div class="line">author: Tristan</div><div class="line"># 博客语言</div><div class="line">language: zh-Hans</div><div class="line"># 时区</div><div class="line">timezone:</div><div class="line"></div><div class="line"># 博客地址,与申请的GitHub一致</div><div class="line">url: https://mrlrf.github.io/</div><div class="line">root: /</div><div class="line"># 博客链接格式</div><div class="line">permalink: :year/:month/:day/:title/</div><div class="line">permalink_defaults:</div><div class="line"></div><div class="line"># Directory</div><div class="line">source_dir: source</div><div class="line">public_dir: public</div><div class="line">tag_dir: tags</div><div class="line">archive_dir: archives</div><div class="line">category_dir: categories</div><div class="line">code_dir: downloads/code</div><div class="line">i18n_dir: :lang</div><div class="line">skip_render:</div><div class="line"></div><div class="line"># Writing</div><div class="line">new_post_name: :title.md # File name of new posts</div><div class="line">default_layout: post</div><div class="line">titlecase: false # Transform title into titlecase</div><div class="line">external_link: true # Open external links in new tab</div><div class="line">filename_case: 0</div><div class="line">render_drafts: false</div><div class="line">post_asset_folder: false</div><div class="line">relative_link: false</div><div class="line">future: true</div><div class="line">highlight:</div><div class="line">  enable: true</div><div class="line">  line_number: true</div><div class="line">  auto_detect: false</div><div class="line">  tab_replace:</div><div class="line"></div><div class="line"># Category &amp; Tag</div><div class="line">default_category: uncategorized</div><div class="line">category_map:</div><div class="line">tag_map:</div><div class="line"></div><div class="line"># 日期格式</div><div class="line">## Hexo uses Moment.js to parse and display date</div><div class="line">## You can customize the date format as defined in</div><div class="line">## http://momentjs.com/docs/#/displaying/format/</div><div class="line">date_format: YYYY-MM-DD</div><div class="line">time_format: HH:mm:ss</div><div class="line"></div><div class="line"># Pagination(分页)</div><div class="line">## Set per_page to 0 to disable pagination(每页文章数量)</div><div class="line">per_page: 10</div><div class="line">pagination_dir: page</div><div class="line"></div><div class="line"># Extensions(博客主题)</div><div class="line">## Plugins: https://hexo.io/plugins/</div><div class="line">## Themes: https://hexo.io/themes/landscape</div><div class="line">theme: hexo-theme-next</div><div class="line"></div><div class="line"># Deployment(发布设置)</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repository: https://github.com/MrLrf/MrLrf.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="管理博客主题"><a href="#管理博客主题" class="headerlink" title="管理博客主题"></a>管理博客主题</h2><hr>
+<p>博客的主题文件放在博客根目录themes文件夹下,修改主题的方法为:将主题文件夹下载放在themes文件夹下,然后在博客根目录_config.yml文件中修改theme为主题文件夹名,然后重新部署即可.<br>推荐几个我使用过的博客主题:</p>
+<ul>
+<li><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a><br>简洁美观,目前Github上Star最高的Hexo主题，支持几种不同的风格。<br><img src="http://opf32dlts.bkt.clouddn.com/17-5-11/26134374-file_1494474966697_129e1.jpg" alt=""></li>
+<li><a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">Yilia</a><br><img src="http://opf32dlts.bkt.clouddn.com/17-5-11/68196472-file_1494475636357_48a2.gif" alt=""></li>
+<li><a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" rel="external">Yelee</a><br>该主题是作者基于Yilia修改而来，改变了大量的样式。<br><img src="http://opf32dlts.bkt.clouddn.com/17-5-11/59189359-file_1494481082580_a630.jpg" alt=""></li>
+</ul>
+<p>如果要修改主题的配置比如头像,友情链接之类的可以直接在主题文件夹下的_config.yml文件中修改,每个主题都有其对应的说明,都非常详细,这里就不多说了.</p>
+<p>下面是本文最重要的部分,多终端管理博客.</p>
+<h2 id="多终端同时管理博客"><a href="#多终端同时管理博客" class="headerlink" title="多终端同时管理博客"></a>多终端同时管理博客</h2><p>很多人都是公司一台电脑,家里一台电脑,像我,学校实验室还有一台电脑,我想去同时管理博客,达到备份博客主题、文章、配置的目的.接下来介绍一种可以解决此问题的方法.<br><strong>首先,将你的博客内容备份到GitHub.</strong></p>
+<ol>
+<li>配置.gitignore文件。进入博客根目录下，找到此文件，用文本编辑器打开，在最后增加两行内容/.deploy_git和/public.</li>
+<li>在博客根目录下,在git bash中执行<code>git init</code>和<code>git remote add origin &lt;server&gt;</code>命令,初始化仓库并绑定GitHub远程仓库.</li>
+<li>将博客内容同步到远程仓库,在git bash中执行一下命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add . #添加目录下所有文件</div><div class="line">git commit -m &quot;更新说明&quot; #提交并添加更新说明</div><div class="line">git push -u origin master #推送更新到远程仓库</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>其他电脑pull远程仓库文件</strong></p>
+<ol>
+<li>在你的另一台电脑上先安装好git、node、hexo等,然后建好hexo文件夹并初始化,安装好插件,然后在博客根目录下git bash中执行以下命令:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git remote add origin &lt;server&gt;</div><div class="line">git fetch --all</div><div class="line">git reset --hard origin/master</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>发布博客后同步</strong><br>在一台电脑上发不完博客之后,记得将博客备份同步到远程仓库,在博客根目录下git bash中执行以下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">#可以用git master 查看更改内容</div><div class="line">git commit -m &quot;更新信息&quot;</div><div class="line">git push -u origin master #以后每次提交可以直接git push</div></pre></td></tr></table></figure></p>
+<p><strong>平时同步管理</strong><br>每次想写博客时，先执行<code>git pull</code>进行同步更新.发布完文章后同样按照上面的 发布博客后同步 同步到远程仓库。<br>如此就能解决多终端同时管理博客的问题了.</p>
+<hr>
+<p>转载请注明出处:<a href="https://mrlrf.github.io/2017/05/05/Hexo-github搭建博客/">https://mrlrf.github.io/2017/05/05/Hexo-github搭建博客/</a><br>作者博客:<a href="https://mrlrf.github.io">https://mrlrf.github.io</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/05/What-Happened/" rel="next" title="从输入url到页面展示到底发生了什么">
+                <i class="fa fa-chevron-left"></i> 从输入url到页面展示到底发生了什么
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/24/Nothing-can-compare-with-you/" rel="prev" title="春风十里,不如你">
+                春风十里,不如你 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc5OS81Mzcw"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/touxiang.png"
+               alt="Tristan" />
+          <p class="site-author-name" itemprop="name">Tristan</p>
+           
+              <p class="site-description motion-element" itemprop="description">在追寻真理的路上，我们要勇于犯错，只有犯错，我们才会离真理更进一步。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MrLrf" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2238972561/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/Mr-Li-2016/" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客园
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:liruifeng0718@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://music.163.com/#/user/home?id=73941683" target="_blank" title="网易云音乐">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  网易云音乐
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境的搭建-基于Windows"><span class="nav-number">2.</span> <span class="nav-text">环境的搭建(基于Windows)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将本地博客同步到GitHub上"><span class="nav-number">4.</span> <span class="nav-text">将本地博客同步到GitHub上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理个人博客"><span class="nav-number">5.</span> <span class="nav-text">管理个人博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理博客主题"><span class="nav-number">6.</span> <span class="nav-text">管理博客主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多终端同时管理博客"><span class="nav-number">7.</span> <span class="nav-text">多终端同时管理博客</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tristan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("GhEt4pWti6YnlV7Yi5Ucwy3F-gzGzoHsz", "1P3nKXXtcWRGYVlnzJCqDO0z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
